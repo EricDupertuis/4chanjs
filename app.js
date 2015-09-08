@@ -8,18 +8,12 @@ var thread = process.argv[2];
 var host = url.parse(thread);
 var folderName = host.pathname.split('/').pop();
 var mkdir = 'mkdir -p ' + 'downloads/' + folderName;
-var chmod = 'chmod -R 777 downloads/' + folderName;
 
 var mkdirExec = exec(mkdir, function (err, stdout, stderr) {
     if (err) {
         throw err;
     } else {
         console.log('folder created');
-    }
-});
-var chmodExec = exec(chmod, function (err, stdout, stderr) {
-    if (err) {
-        throw err;
     }
 });
 
