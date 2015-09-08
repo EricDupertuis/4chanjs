@@ -21,10 +21,6 @@ var child = exec(mkdir, function (err, stdout, stderr) {
     }
 });
 
-var download = function (url, dest) {
-    var file = fs.createWriteStream(dest + '/' + links[i]);
-};
-
 var links = [];
 
 jsdom.env(
@@ -36,8 +32,18 @@ jsdom.env(
             links.push(window.$(images[i]).attr('href'));
         }
        for (i = 0; i < links.length;i++) {
-           url = 'http://'+links[i].replace(/\/\//, '')
-           console.log(url);
+           href = 'http://'+links[i].replace(/\/\//, '');
+           splitted = href.split("/");
+           filename = splitted[splitted.length - 1];
+
+           var file = fs.createWriteStream(folderName + '/' + filename);
+
+           var request = http.get(href, function(res, cb) {
+               res.pipe(file);
+               file.on('finish', function() {
+                   file.close(cb);
+               });
+           })
        }
     }
 );
