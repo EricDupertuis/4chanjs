@@ -1,7 +1,6 @@
 // Dependencies
-var fs = require('fs');
 var url = require('url');
-var http = require('http');
+var http = require('http-request');
 var jsdom = require("jsdom");
 var exec = require('child_process').exec;
 
@@ -38,24 +37,17 @@ jsdom.env(
            href = 'http://'+links[i].replace(/\/\//, '');
            splitted = href.split("/");
            filename = splitted[splitted.length - 1];
+           fullPath = 'downloads/' + folderName + '/' + filename;
 
-           var request = http.get(href, function(res){
-               var imagedata = '';
-               res.setEncoding('binary');
+           options = {url: href};
 
-               res.on('data', function(chunk){
-                   imagedata += chunk
-               });
-
-               res.on('end', function(){
-                   fs.writeFile(filename, imagedata, 'binary', function(err){
-                       if (err) {
-                           throw err
-                       }
-                       console.log(filename + ' saved.')
-                   });
-               })
-           })
+           http.get(options, fullPath, function (error, result) {
+               if (error) {
+                   console.error(error);
+               } else {
+                   console.log('File downloaded at: ' + result.file);
+               }
+           });
        }
     }
 );
