@@ -20,17 +20,24 @@ var child = exec(mkdir, function (err, stdout, stderr) {
     }
 });
 
-var file = fs.createWriteStream(folderName + '/' + folderName + '.html');
-
+links = [];
 jsdom.env(
     thread,
     ["http://code.jquery.com/jquery.js"],
     function (err, window) {
-        links = [];
-        elements = window.$(".postContainer .file .fileThumb");
-        console.log(elements.length);
-        for (i = 0; i < elements.length ;i++) {
-            console.log(window.$(elements[i]).attr('href'));
+        images = window.$(".postContainer .file .fileThumb");
+        for (i = 0; i < images.length; i++) {
+            links.push(window.$(elements[i]).attr('href'));
+        }
+        webms = window.$(".postContainer .file .fileThumb");
+        for (i = 0; i < webms.length; i++) {
+            links.push(window.$(elements[i]).attr('href'))
         }
     }
 );
+
+for (i = 0; i < links.length; i++) {
+    var file = fs.createWriteStream(folderName + '/' + links[i]);
+    file.write();
+    file.end();
+}
