@@ -36,13 +36,23 @@ jsdom.env(
            splitted = href.split("/");
            filename = splitted[splitted.length - 1];
 
-           var file = fs.createWriteStream(folderName + '/' + filename);
+           var request = http.get(href, function(res){
+               var imagedata = '';
+               res.setEncoding('binary');
 
-           var request = http.get(href, function(res, cb) {
-               res.pipe(file);
-               file.on('finish', function() {
-                   file.close(cb);
+               res.on('data', function(chunk){
+                   imagedata += chunk
                });
+
+               res.on('end', function(){
+                   fs.writeFile(filename, imagedata, 'binary', function(err){
+                       if (err) {
+                           throw err
+                       }
+                       console.log(filename + ' saved.')
+                   })
+               })
+
            })
        }
     }
