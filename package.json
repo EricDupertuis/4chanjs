@@ -4,8 +4,11 @@
   "description": "Download images from 4Chan",
   "main": "app.js",
   "dependencies": {
-    "request": "^2.61.0",
-    "jsdom": "3.1.2"
+    "form-data": "^1.0.0-rc3",
+    "http-request": "^0.7.0",
+    "jsdom": "3.1.2",
+    "mmmagic": "^0.4.0",
+    "request": "^2.61.0"
   },
   "devDependencies": {},
   "scripts": {
