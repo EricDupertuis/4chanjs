@@ -3,6 +3,8 @@ var url = require('url');
 var http = require('http-request');
 var jsdom = require("jsdom");
 var exec = require('child_process').exec;
+var argv = require('minimist')(process.argv.slice(2));
+console.dir(argv['d']);
 
 var thread = process.argv[2];
 var host = url.parse(thread);

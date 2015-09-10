@@ -7,6 +7,7 @@
     "form-data": "^1.0.0-rc3",
     "http-request": "^0.7.0",
     "jsdom": "3.1.2",
+    "minimist": "^1.2.0",
     "mmmagic": "^0.4.0",
     "request": "^2.61.0"
   },
