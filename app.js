@@ -4,12 +4,20 @@ var http = require('http-request');
 var jsdom = require("jsdom");
 var exec = require('child_process').exec;
 var argv = require('minimist')(process.argv.slice(2));
-console.dir(argv['d']);
 
 var thread = process.argv[2];
 var host = url.parse(thread);
 var folderName = host.pathname.split('/').pop();
-var mkdir = 'mkdir -p ' + 'downloads/' + folderName;
+
+function generateFolder() {
+    if (typeof argv['f'] != 'undefined') {
+        return 'mkdir -p ' + 'downloads/' + folderName;
+    } else {
+        return 'mkdir -p ' + argv['f'];
+    }
+}
+
+mkdir = generateFolder();
 
 var mkdirExec = exec(mkdir, function (err, stdout, stderr) {
     if (err) {
