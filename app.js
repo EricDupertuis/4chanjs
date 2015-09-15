@@ -5,14 +5,14 @@ var jsdom = require("jsdom");
 var exec = require('child_process').exec;
 var argv = require('minimist')(process.argv.slice(2));
 
-var app = require('./lib/main');
+var app = require('./lib/main.js');
 
 var thread = process.argv[2];
 var host = url.parse(thread);
 var folderName = host.pathname.split('/').pop();
 
 
-var mkdirExec = exec(generateDownloadFolder(), function (err, stdout, stderr) {
+var mkdirExec = exec(app.generateDownloadFolder(argv['f']), function (err, stdout, stderr) {
     if (err) {
         throw err;
     } else {
