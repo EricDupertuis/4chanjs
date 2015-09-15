@@ -9,7 +9,7 @@ var thread = process.argv[2];
 var host = url.parse(thread);
 var folderName = host.pathname.split('/').pop();
 
-function generateFolder() {
+function generateDownloadFolder() {
     if (typeof argv['f'] == 'undefined' || argv['f'] == "") {
         return 'mkdir -p ' + 'downloads/' + folderName;
     } else {
@@ -17,9 +17,17 @@ function generateFolder() {
     }
 }
 
-mkdir = generateFolder();
+function generateUrlList()
+{
 
-var mkdirExec = exec(mkdir, function (err, stdout, stderr) {
+}
+
+function downloadFile(url)
+{
+
+}
+
+var mkdirExec = exec(generateDownloadFolder(), function (err, stdout, stderr) {
     if (err) {
         throw err;
     } else {
