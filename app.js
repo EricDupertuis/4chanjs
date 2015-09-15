@@ -5,27 +5,12 @@ var jsdom = require("jsdom");
 var exec = require('child_process').exec;
 var argv = require('minimist')(process.argv.slice(2));
 
+var app = require('./lib/main');
+
 var thread = process.argv[2];
 var host = url.parse(thread);
 var folderName = host.pathname.split('/').pop();
 
-function generateDownloadFolder() {
-    if (typeof argv['f'] == 'undefined' || argv['f'] == "") {
-        return 'mkdir -p ' + 'downloads/' + folderName;
-    } else {
-        return 'mkdir -p ' + argv['f'];
-    }
-}
-
-function generateUrlList()
-{
-
-}
-
-function downloadFile(url)
-{
-
-}
 
 var mkdirExec = exec(generateDownloadFolder(), function (err, stdout, stderr) {
     if (err) {
