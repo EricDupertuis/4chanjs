@@ -10,7 +10,7 @@ var host = url.parse(thread);
 var folderName = host.pathname.split('/').pop();
 
 function generateFolder() {
-    if (typeof argv['f'] != 'undefined') {
+    if (typeof argv['f'] == 'undefined' || argv['f'] == "") {
         return 'mkdir -p ' + 'downloads/' + folderName;
     } else {
         return 'mkdir -p ' + argv['f'];
