@@ -2,25 +2,15 @@
 var url = require('url');
 var http = require('http-request');
 var jsdom = require("jsdom");
-var exec = require('child_process').exec;
 var argv = require('minimist')(process.argv.slice(2));
 var app = require('./lib/main.js');
 
 var thread = argv["_"][0];
 var host = url.parse(thread);
 var threadName = host.pathname.split('/').pop();
+folderName = app.getFolderName(argv['f'], threadName);
 
-exec(app.generateDownloadFolder(argv['f'], threadName), function (err, stdout, stderr) {
-    if (err) {
-        throw err;
-    } else {
-        console.log('folder created');
-    }
-});
-
-dom = jsdom.env(
-
-);
+app.generateDownloadFolder(folderName);
 
 links = jsdom.env(
     thread,
