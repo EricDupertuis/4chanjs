@@ -25,10 +25,8 @@ links = jsdom.env(
 );
 
 for (i = 0; i < links.length; i++) {
-    fullPath = app.getFullPath(
-        folderName,
-        'http://'+links[i].replace(/\/\//, '')
-    );
+    href = 'http://'+links[i].replace(/\/\//, '');
+    fullPath = app.getFullPath(folderName, href);
 
     options = {
         url: href
