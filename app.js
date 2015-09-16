@@ -4,6 +4,12 @@ var jsdom = require("jsdom");
 var argv = require('minimist')(process.argv.slice(2));
 var app = require('./lib/main.js');
 
+if (typeof argv['e'] != "undefined" || argv[''] != "") {
+    exclude = argv['e'];
+} else {
+    exclude = false;
+}
+
 var thread = argv["_"][0];
 var host = url.parse(thread);
 var threadName = host.pathname.split('/').pop();
@@ -20,7 +26,6 @@ links = jsdom.env(
         for (i = 0; i < images.length; i++) {
             links.push(window.$(images[i]).attr('href'));
         }
-        return links;
     }
 );
 
