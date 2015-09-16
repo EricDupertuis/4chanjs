@@ -1,6 +1,5 @@
 // Dependencies
 var url = require('url');
-var http = require('http-request');
 var jsdom = require("jsdom");
 var argv = require('minimist')(process.argv.slice(2));
 var app = require('./lib/main.js');
@@ -26,18 +25,14 @@ links = jsdom.env(
 );
 
 for (i = 0; i < links.length; i++) {
-    href = 'http://'+links[i].replace(/\/\//, '');
-    splitted = href.split("/");
-    filename = splitted[splitted.length - 1];
-    fullPath = argv['f'] + '/' + filename;
+    fullPath = app.getFullPath(
+        folderName,
+        'http://'+links[i].replace(/\/\//, '')
+    );
 
-    options = {url: href};
+    options = {
+        url: href
+    };
 
-    http.get(options, fullPath, function (error, result) {
-        if (error) {
-            console.error(error);
-        } else {
-            console.log('File downloaded at: ' + result.file);
-        }
-    });
+    app.downloadFile(options,fullPath);
 }
