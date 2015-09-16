@@ -2,13 +2,14 @@
 
 This is currently a work in progress and barely works with almsot no error handling.
 
+    -f : Specify a folder where you want to save your images
+
 ## What it can currently do :
     - Download all images and webms from a thread
     - Not much else
 
 ## What will it do in the futur :
-    - Save in a specific folder
-    - Exclude by patterns
+    - Exclude by patterns (wip)
     - Download depending on file size
     - Easily automate scrapping
     
