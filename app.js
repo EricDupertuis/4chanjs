@@ -23,10 +23,8 @@ links = jsdom.env(
     }
 );
 
-if (typeof argv['e'] != "undefined" || argv[''] != "") {
-    exclude = argv['e'];
-} else {
-    exclude = false;
+if (typeof argv['e'] != "undefined" && argv[''] != "") {
+    links = app.excludePattern(links, argv['e']);
 }
 
 for (i = 0; i < links.length; i++) {
