@@ -1,6 +1,6 @@
 # 4Chan.js, Javascript image scrapper // Node.js powered
 
-This is currently a work in progress and barely works with almsot no error handling.
+This is currently a work in progress and barely works with almost no error handling. DO NOT USE
 
     -f : Specify a folder where you want to save your images
 
