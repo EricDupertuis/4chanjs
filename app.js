@@ -1,4 +1,4 @@
-//@TODO unit testing
+//TODO unit testing
 var url = require('url');
 var jsdom = require("jsdom");
 var argv = require('minimist')(process.argv.slice(2));
@@ -23,7 +23,7 @@ links = jsdom.env(
     }
 );
 
-//@TODO check return value here
+//TODO check return value here
 if (typeof argv['e'] != "undefined" && argv[''] != "") {
     links = app.excludePattern(links, argv['e']);
 } else {
@@ -32,12 +32,11 @@ if (typeof argv['e'] != "undefined" && argv[''] != "") {
 
 for (i = 0; i < links.length; i++) {
     href = 'http://'+links[i].replace(/\/\//, '');
-
-    options = {
-        url: href
-    };
+    
     app.downloadFile(
-        options,
+        {
+            url: href
+        },
         app.getFullPath(folderName, href)
     );
 }
