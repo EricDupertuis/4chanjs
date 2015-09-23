@@ -20,23 +20,20 @@ links = jsdom.env(
         for (i = 0; i < images.length; i++) {
             links.push(window.$(images[i]).attr('href'));
         }
+
+        if (typeof argv['e'] != "undefined" && argv[''] != "") {
+            links = app.excludePattern(links, argv['e']);
+        }
+
+        for (i = 0; i < links.length; i++) {
+            href = 'http://'+links[i].replace(/\/\//, '');
+
+            app.downloadFile(
+                {
+                    url: href
+                },
+                app.getFullPath(folderName, href)
+            );
+        }
     }
 );
-
-//TODO check return value here
-if (typeof argv['e'] != "undefined" && argv[''] != "") {
-    links = app.excludePattern(links, argv['e']);
-} else {
-    exclude = false;
-}
-
-for (i = 0; i < links.length; i++) {
-    href = 'http://'+links[i].replace(/\/\//, '');
-    
-    app.downloadFile(
-        {
-            url: href
-        },
-        app.getFullPath(folderName, href)
-    );
-}
