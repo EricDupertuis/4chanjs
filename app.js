@@ -4,6 +4,13 @@ var jsdom = require("jsdom");
 var argv = require('minimist')(process.argv.slice(2));
 var app = require('./lib/main.js');
 
+if (typeof argv["_"][0] == "undefined" || argv["_"][0] == "") {
+    console.log('No url given');
+    process.exit(1);
+}
+
+console.log(argv);
+
 var thread = argv["_"][0];
 var host = url.parse(thread);
 var threadName = host.pathname.split('/').pop();
