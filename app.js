@@ -9,8 +9,6 @@ if (typeof argv["_"][0] == "undefined" || argv["_"][0] == "") {
     process.exit(1);
 }
 
-console.log(argv);
-
 var thread = argv["_"][0];
 var host = url.parse(thread);
 var threadName = host.pathname.split('/').pop();
@@ -33,14 +31,16 @@ links = jsdom.env(
         }
 
         for (i = 0; i < links.length; i++) {
-            href = 'http://'+links[i].replace(/\/\//, '');
+            if (typeof links[i] != "undefined") {
+                href = 'http://'+links[i].replace(/\/\//, '');
 
-            app.downloadFile(
-                {
-                    url: href
-                },
-                app.getFullPath(folderName, href)
-            );
+                app.downloadFile(
+                    {
+                        url: href
+                    },
+                    app.getFullPath(folderName, href)
+                );
+            }
         }
     }
 );
