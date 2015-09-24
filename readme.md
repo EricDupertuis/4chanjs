@@ -1,4 +1,4 @@
-# 4Chan.js, Javascript image scrapper // Node.js powered
+# 4Chan.js thread scrapper
 
 This is currently a work in progress and barely works with almost no error handling. DO NOT USE
 
@@ -9,10 +9,11 @@ This is currently a work in progress and barely works with almost no error handl
     - Not much else
 
 ## What will it do in the futur :
-    - Exclude by patterns (wip)
+    - Exclude by one or multiple patterns (wip)
     - Download depending on file size
     - Easily automate scrapping
-    
+    - **Currently no Windows support**
+
 ## What it will never do:
     - Coffee, sadly
     - Scrap other websites
