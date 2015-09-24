@@ -12,7 +12,6 @@ This is currently a work in progress and barely works with almost no error handl
     - Exclude by one or multiple patterns (wip)
     - Download depending on file size
     - Easily automate scrapping
-    - **Currently no Windows support**
 
 ## What it will never do:
     - Coffee, sadly
@@ -20,3 +19,5 @@ This is currently a work in progress and barely works with almost no error handl
     - Scrap entire boards
     
 If you're interested to work on this, have questions or want to yell at me (bad code and stuff): [@dupertuiseric](https://twitter.com/dupertuiseric)
+
+__Currently no Windows support__
