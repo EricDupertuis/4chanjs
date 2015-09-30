@@ -1,6 +1,6 @@
 {
   "name": "4chan-js",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Download images from 4Chan",
   "main": "app.js",
   "dependencies": {
@@ -10,6 +10,10 @@
     "minimist": "^1.2.0",
     "mmmagic": "^0.4.0",
     "request": "^2.61.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EricDupertuis/4chanjs"
   },
   "devDependencies": {},
   "scripts": {
