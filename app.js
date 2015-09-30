@@ -1,4 +1,4 @@
-//TODO unit testing
+#! /usr/bin/env node
 var url = require('url');
 var jsdom = require("jsdom");
 var argv = require('minimist')(process.argv.slice(2));
