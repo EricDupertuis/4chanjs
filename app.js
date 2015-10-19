@@ -10,6 +10,12 @@ if (typeof argv["_"][0] == "undefined" || argv["_"][0] == "") {
 }
 
 var thread = argv["_"][0];
+
+if (thread._length > 1) {
+    console.log("Too many arguments");
+    process.exit(0);
+}
+
 var host = url.parse(thread);
 var threadName = host.pathname.split('/').pop();
 folderName = app.getFolderName(argv['f'], threadName);
@@ -26,8 +32,13 @@ links = jsdom.env(
             links.push(window.$(images[i]).attr('href'));
         }
 
-        if (typeof argv['e'] != "undefined" && argv[''] != "") {
+        if (typeof argv['e'] != "undefined" && argv['e'] != "") {
             links = app.excludePattern(links, argv['e']);
+        }
+
+        if (typeof argv['noanimation'] != "undefined"){
+            links = app.excludePattern(links, 'gif');
+            links = app.excludePattern(links, 'webm')
         }
 
         for (i = 0; i < links.length; i++) {
