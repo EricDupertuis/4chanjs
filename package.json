@@ -4,6 +4,7 @@
   "description": "Download images from 4Chan",
   "main": "app.js",
   "dependencies": {
+    "cheerio": "^0.19.0",
     "form-data": "^1.0.0-rc3",
     "http-request": "^0.7.0",
     "jsdom": "3.1.2",
