@@ -65,24 +65,13 @@ links = jsdom.env(
             links.push(window.$(images[i]).attr('href'));
         }
 
-        if (typeof argv['noanimation'] != "undefined"){
+        if (typeof argv['noanimation'] != "undefined" && argv['noanimation'] == true){
             links = app.excludePattern(links, 'gif');
             links = app.excludePattern(links, 'webm')
         } else if (typeof argv['e'] != "undefined" && argv['e'] != "") {
             links = app.excludePattern(links, argv['e']);
         }
 
-        for (i = 0; i < links.length; i++) {
-            if (typeof links[i] != "undefined") {
-                href = 'http://'+links[i].replace(/\/\//, '');
-
-                app.downloadFile(
-                    {
-                        url: href
-                    },
-                    app.getFullPath(folderName, href)
-                );
-            }
-        }
+        app.downloadAll(links);
     }
 );

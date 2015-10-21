@@ -15,6 +15,7 @@ This is currently a work in progress and barely works with almost no error handl
 ## What will it do in the futur :
     - Download depending on file size
     - Easily automate scrapping
+    - Generation of an html page with all images
 
 ## What it will never do:
     - Coffee, sadly
