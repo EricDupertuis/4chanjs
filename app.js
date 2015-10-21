@@ -1,27 +1,34 @@
 #! /usr/bin/env node
 var url = require('url');
 var http = require('http');
+var util = require('util');
 var jsdom = require("jsdom");
 var argv = require('minimist')(process.argv.slice(2));
 var app = require('./lib/main.js');
-var cheerio = require('cheerio');
 
 if (typeof argv["u"] == "undefined" || argv["u"] == "") {
     console.log('No url given');
     process.exit(1);
 }
 
-var thread = argv["u"];
+if (typeof argv['u'] == "undefined" ) {
+    console.log('Url not specified');
+    process.exit(0);
+} else {
+    var thread = argv["u"];
+}
 
 if (argv["_"] > 1) {
     console.log("Too many arguments");
     process.exit(0);
 }
 
+var urlInfo = url.parse(thread);
+
 var options = {
-    host: thread,
+    host: urlInfo['hostname'],
     port: 80,
-    path: "/"
+    path: urlInfo['pathname']
 };
 
 var htmlContent = "";
@@ -29,18 +36,21 @@ var htmlContent = "";
 var req = http.request(options, function(res) {
     res.setEncoding("utf8");
     res.on("data", function (chunk) {
-        content += chunk;
+        htmlContent += chunk;
     });
 
     res.on("end", function () {
-        util.log(content);
+        util.log('html downloaded');
     });
+});
+
+req.on('error', function (e) {
+    console.log(e.message);
 });
 
 req.end();
 
-var host = url.parse(thread);
-var threadName = host.pathname.split('/').pop();
+var threadName = urlInfo.pathname.split('/').pop();
 folderName = app.getFolderName(argv['f'], threadName);
 
 app.generateDownloadFolder(folderName);
