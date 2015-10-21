@@ -65,12 +65,7 @@ links = jsdom.env(
             links.push(window.$(images[i]).attr('href'));
         }
 
-        if (typeof argv['noanimation'] != "undefined" && argv['noanimation'] == true){
-            links = app.excludePattern(links, 'gif');
-            links = app.excludePattern(links, 'webm')
-        } else if (typeof argv['e'] != "undefined" && argv['e'] != "") {
-            links = app.excludePattern(links, argv['e']);
-        }
+        links = app.excludePattern(links, argv);
 
         app.downloadAll(links);
     }
