@@ -1,5 +1,7 @@
 # 4Chan.js thread scrapper
 
+This project is not in an advanced state and is error prone. Don't hesitate to open an issue if you encounter an error.
+
 ## Install
 
     npm install -g 4chan-js
