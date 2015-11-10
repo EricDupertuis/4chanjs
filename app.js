@@ -9,11 +9,6 @@ var app = require('./lib/main.js');
 if (typeof argv["u"] == "undefined" || argv["u"] == "") {
     console.log('No url given');
     process.exit(1);
-}
-
-if (typeof argv['u'] == "undefined" ) {
-    console.log('Url not specified');
-    process.exit(0);
 } else {
     var thread = argv["u"];
 }
