@@ -1,6 +1,6 @@
 {
   "name": "4chan-js",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Download images from 4Chan",
   "main": "app.js",
   "dependencies": {
