@@ -51,7 +51,7 @@ req.on('error', function (e) {
 req.end();
 
 var threadName = urlInfo.pathname.split('/').pop();
-folderName = app.getFolderName(argv['f'], threadName);
+var folderName = app.getFolderName(argv['f'], threadName);
 
 app.generateDownloadFolder(folderName);
 
@@ -67,6 +67,6 @@ links = jsdom.env(
 
         links = app.excludePattern(links, argv);
 
-        app.downloadAll(links);
+        app.downloadAll(links, folderName);
     }
 );
