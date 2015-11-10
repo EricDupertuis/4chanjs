@@ -12,6 +12,7 @@ This project is not in an advanced state and is error prone. Don't hesitate to o
     -e : specify a file format you don't want to download (ex: -e gif)
     --noanimation : doesn't download gifs and webms
     -u : url of the thread
+    -m : Specify file system permissions (ex: -e 777) 755 will be used by default
 
 ## Example
 
