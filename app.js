@@ -13,10 +13,22 @@ if (typeof argv["u"] == "undefined" || argv["u"] == "") {
     var thread = argv["u"];
 }
 
+if (
+    typeof argv['m'] != "undefined"
+    && argv['m'] != ""
+    && argv['m'].toString().length === 3
+) {
+    var setMode = argv['m'];
+} else {
+    var setMode = "755";
+}
+
 if (argv["_"] > 1) {
     console.log("Too many arguments");
     process.exit(0);
 }
+
+console.log(setMode);
 
 var urlInfo = url.parse(thread);
 
@@ -37,9 +49,7 @@ var req = http.request(options, function(res) {
     res.on("end", function () {
         util.log('html downloaded');
     });
-});
-
-req.on('error', function (e) {
+}).on('error', function (e) {
     console.log(e.message);
 });
 
@@ -62,6 +72,6 @@ links = jsdom.env(
 
         links = app.excludePattern(links, argv);
 
-        app.downloadAll(links, folderName);
+        app.downloadAll(links, folderName, setMode);
     }
 );
