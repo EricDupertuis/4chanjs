@@ -20,7 +20,7 @@ if (
 ) {
     var setMode = argv['m'];
 } else {
-    var setMode = "755";
+    var setMode = "600";
 }
 
 if (argv["_"] > 1) {
