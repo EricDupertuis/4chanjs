@@ -1,13 +1,13 @@
 #! /usr/bin/env node
 'use strict';
 
-var url = require('url');
-var http = require('http');
-var util = require('util');
-var jsdom = require("jsdom");
-var argv = require('minimist')(process.argv.slice(2));
-var app = require('./lib/main.js');
-var setMode = "600";
+const url = require('url');
+const http = require('http');
+const util = require('util');
+const jsdom = require("jsdom");
+const argv = require('minimist')(process.argv.slice(2));
+const app = require('./lib/main.js');
+const setMode = "600";
 
 if (typeof argv["u"] == "undefined" || argv["u"] == "") {
     console.log('No url given');
