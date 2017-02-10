@@ -1,10 +1,13 @@
 #! /usr/bin/env node
+'use strict';
+
 var url = require('url');
 var http = require('http');
 var util = require('util');
 var jsdom = require("jsdom");
 var argv = require('minimist')(process.argv.slice(2));
 var app = require('./lib/main.js');
+var setMode = "600";
 
 if (typeof argv["u"] == "undefined" || argv["u"] == "") {
     console.log('No url given');
@@ -13,22 +16,10 @@ if (typeof argv["u"] == "undefined" || argv["u"] == "") {
     var thread = argv["u"];
 }
 
-if (
-    typeof argv['m'] != "undefined"
-    && argv['m'] != ""
-    && argv['m'].toString().length === 3
-) {
-    var setMode = argv['m'];
-} else {
-    var setMode = "600";
-}
-
 if (argv["_"] > 1) {
     console.log("Too many arguments");
     process.exit(0);
 }
-
-console.log(setMode);
 
 var urlInfo = url.parse(thread);
 
@@ -60,13 +51,13 @@ var folderName = app.getFolderName(argv['f'], threadName);
 
 app.generateDownloadFolder(folderName);
 
-links = jsdom.env(
+let links = jsdom.env(
     thread,
     ["http://code.jquery.com/jquery.js"],
     function (err, window) {
-        var links = [];
-        images = window.$(".postContainer .file .fileThumb");
-        for (i = 0; i < images.length; i++) {
+        let links = [];
+        let images = window.$(".postContainer .file .fileThumb");
+        for (let i = 0; i < images.length; i++) {
             links.push(window.$(images[i]).attr('href'));
         }
 
