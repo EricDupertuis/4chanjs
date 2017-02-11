@@ -1,37 +1,38 @@
 #! /usr/bin/env node
 'use strict';
 
-const url = require('url');
-const http = require('http');
-const util = require('util');
-const jsdom = require("jsdom");
-const argv = require('minimist')(process.argv.slice(2));
-const app = require('./lib/main.js');
-const setMode = "600";
+let url = require('url');
+let http = require('http');
+let util = require('util');
+let jsdom = require("jsdom");
+let argv = require('minimist')(process.argv.slice(2));
+let app = require('./lib/main.js');
+let setMode = "600";
+let thread;
 
 if (typeof argv["u"] == "undefined" || argv["u"] == "") {
     console.log('No url given');
     process.exit(1);
 } else {
-    var thread = argv["u"];
+    thread = argv["u"];
 }
 
 if (argv["_"] > 1) {
     console.log("Too many arguments");
     process.exit(0);
 }
+console.log(thread);
+let urlInfo = url.parse(thread);
 
-var urlInfo = url.parse(thread);
-
-var options = {
+let options = {
     host: urlInfo['hostname'],
     port: 80,
     path: urlInfo['pathname']
 };
 
-var htmlContent = "";
+let htmlContent = "";
 
-var req = http.request(options, function(res) {
+let req = http.request(options, function(res) {
     res.setEncoding("utf8");
     res.on("data", function (chunk) {
         htmlContent += chunk;
@@ -46,19 +47,19 @@ var req = http.request(options, function(res) {
 
 req.end();
 
-var threadName = urlInfo.pathname.split('/').pop();
-var folderName = app.getFolderName(argv['f'], threadName);
+let threadName = urlInfo.pathname.split('/').pop();
+let folderName = app.getFolderName(argv['f'], threadName);
 
 app.generateDownloadFolder(folderName);
 
 let links = jsdom.env(
     thread,
-    ["http://code.jquery.com/jquery.js"],
+    [],
     function (err, window) {
         let links = [];
-        let images = window.$(".postContainer .file .fileThumb");
+        let images = window.document.getElementsByClassName("fileThumb");
         for (let i = 0; i < images.length; i++) {
-            links.push(window.$(images[i]).attr('href'));
+            links.push(images[i].getAttribute('href'));
         }
 
         links = app.excludePattern(links, argv);
@@ -66,3 +67,4 @@ let links = jsdom.env(
         app.downloadAll(links, folderName, setMode);
     }
 );
+
