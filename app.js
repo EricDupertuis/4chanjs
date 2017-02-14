@@ -21,7 +21,7 @@ if (argv["_"] > 1) {
     console.log("Too many arguments");
     process.exit(0);
 }
-console.log(thread);
+
 let urlInfo = url.parse(thread);
 
 let options = {
