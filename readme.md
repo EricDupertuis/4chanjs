@@ -12,7 +12,6 @@ This project is not in an advanced state and is error prone. Don't hesitate to o
     -e : specify a file format you don't want to download (ex: -e gif)
     --noanimation : doesn't download gifs and webms
     -u : url of the thread
-    -m : Specify file system permissions (ex: -e 777) 755 will be used by default
 
 ## Example
 
@@ -36,4 +35,5 @@ This project is not in an advanced state and is error prone. Don't hesitate to o
 
 If you're interested to work on this, have questions or want to yell at me (bad code and stuff): [@dupertuiseric](https://twitter.com/dupertuiseric)
 
-__Currently no Windows support__
+__Currently no Windows support_
+_
